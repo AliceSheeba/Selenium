@@ -17,7 +17,7 @@ public class W3FramesAlert {
 		//Handling frames
 		driver.switchTo().frame("iframeResult");
 		driver.findElement(By.xpath("//button[text()='Try it']")).click();
-		driver.switchTo().defaultContent();
+		//driver.switchTo().defaultContent();
 		
 		//handling the alertbox
 		
