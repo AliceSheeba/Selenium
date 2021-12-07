@@ -1,0 +1,32 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class AdvancedXpath {
+
+	public static void main(String[] args) {
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver = new ChromeDriver();
+		driver.get("http://www.leafground.com/");
+		driver.findElement(By.xpath("//h5[text()='HyperLink']/following-sibling::img")).click();
+		driver.findElement(By.xpath("//a[text()='Go to Home Page']")).click();
+		if (driver.findElement(By.xpath("//h1[@class='wp-heading']")).isDisplayed()) {			
+			System.out.println("landed in home page");
+		}
+			
+		driver.findElement(By.xpath("//h5[text()='HyperLink']/following-sibling::img")).click();
+		String text= driver.findElement(By.xpath("//a[@href='Button.html']")).getAttribute("href");
+		System.out.println(text);
+		driver.findElement(By.xpath("//a[text()='Verify am I broken?']")).click();
+		if (driver.findElement(By.xpath("//h1[text()='HTTP Status 404 – Not Found']")).isDisplayed()) {
+			System.out.println("broken page");
+		}
+		
+		//WebElement element = driver.findElement(By.tagName("a"));
+	
+	}
+
+}
