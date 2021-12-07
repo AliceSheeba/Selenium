@@ -1,0 +1,43 @@
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class W3FramesAlert {
+
+	public static void main(String[] args) throws InterruptedException  {
+		// TODO Auto-generated method stub
+
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver =new ChromeDriver();
+		driver.get("https://www.w3schools.com/js/tryit.asp?filename=tryjs_prompt");
+		driver.manage().window().maximize();
+		//Handling frames
+		driver.switchTo().frame("iframeResult");
+		driver.findElement(By.xpath("//button[text()='Try it']")).click();
+		driver.switchTo().defaultContent();
+		
+		//handling the alertbox
+		
+		Alert alert = driver.switchTo().alert();
+		Thread.sleep(1000);
+		alert.sendKeys("Alice");
+		alert.accept();
+		
+			//Handling the frames	
+		driver.switchTo().frame("iframeResult");
+		String text = driver.findElement(By.xpath("//p[@id='demo']")).getText();
+		
+		if (text.contains("Alice")) {
+			
+			System.out.println("The text " +text +"contains Alice");
+			
+		}
+		else
+			System.out.println("The text " +text +"does not contains Alice");
+		
+	}
+
+}
