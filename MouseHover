@@ -1,0 +1,33 @@
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class MouseHover {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver=new ChromeDriver();
+		driver.get("http://www.leafground.com/pages/mouseOver.html#");
+		driver.manage().window().maximize();
+		//Handing MouseHover
+		Actions build=new Actions(driver);
+		WebElement findElement = driver.findElement(By.linkText("TestLeaf Courses"));
+		build.moveToElement(findElement).build().perform();
+		
+		driver.findElement(By.xpath("//a[text()='Selenium']")).click();
+		Thread.sleep(1000);
+		//Handling Alert
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+        
+       
+      		
+	}
+
+}
