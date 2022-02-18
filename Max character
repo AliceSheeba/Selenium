@@ -1,0 +1,52 @@
+import java.util.HashMap;
+import java.util.Map.Entry;
+
+public class MaxandMinCharacter {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String str="Alice Pon Sheeba";
+		char[] charArray = str.toCharArray();
+		int temp;
+		char  max = 0;
+		
+		HashMap<Character,Integer> HM =new HashMap<Character,Integer>();		
+		
+		
+		for (int i = 0; i < charArray.length; i++) {
+			
+			char ch=charArray[i];		
+					
+			
+			if (HM.containsKey(charArray[i])) {
+				
+                HM.put(ch, HM.get(ch) + 1);
+                
+            } else {
+                HM.put(ch, 1);
+            }
+		}
+		
+		temp=1;
+		for (Entry<Character,Integer> c : HM.entrySet()) {	
+			
+			if (c.getValue()>temp ) {
+				
+				temp=c.getValue();	
+				max=c.getKey();
+							
+			}
+			
+			
+			System.out.println(c.getKey()+" " +c.getValue());
+			
+			
+			
+		}
+		
+	
+		System.out.println("max"+max );
+	}
+
+
+}
